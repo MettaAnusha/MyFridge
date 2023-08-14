@@ -1,5 +1,7 @@
 package com.example.myfridge;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -12,17 +14,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myfridge.databinding.ActivityAddItemBinding;
+import com.example.myfridge.databinding.ActivityAddShoppingItemBinding;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddShoppingItem extends AppCompatActivity {
 
-    private ActivityAddItemBinding binding;
+    private ActivityAddShoppingItemBinding binding;
     private DatabaseHelper databaseHelper;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private byte[] itemImage;
@@ -34,7 +34,7 @@ public class AddItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAddItemBinding.inflate(getLayoutInflater());
+        binding = ActivityAddShoppingItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         databaseHelper = new DatabaseHelper(this);
@@ -67,21 +67,21 @@ public class AddItemActivity extends AppCompatActivity {
                 String itemName = binding.editTextItemName.getText().toString().trim();
                 String quantity = binding.editTextQuantity.getText().toString().trim();
                 try{
-                if (!itemName.isEmpty() && !quantity.isEmpty()) {
-                    int quantityValue = Integer.parseInt(quantity);
-                    String dateStr = binding.edtDateEditText.getText().toString().trim();
-                       long result = databaseHelper.insertItem(DatabaseHelper.TABLE_ITEMS, itemName, quantityValue, itemImage,dateStr);
+                    if (!itemName.isEmpty() && !quantity.isEmpty()) {
+                        int quantityValue = Integer.parseInt(quantity);
+                        String dateStr = binding.edtDateEditText.getText().toString().trim();
+                        long result = databaseHelper.insertShoppingData(DatabaseHelper.TABLE_SHOPPING_LIST, itemName, quantityValue, itemImage,dateStr);
 
-                       if (result != -1) {
-                           Toast.makeText(AddItemActivity.this, "Item added to shopping list", Toast.LENGTH_SHORT).show();
-                           clearInputFields();
-                       } else {
-                           Toast.makeText(AddItemActivity.this, "Failed to add item", Toast.LENGTH_SHORT).show();
-                       }
-                   }
-                 else {
-                    Toast.makeText(AddItemActivity.this, "Please enter a valid item name and quantity", Toast.LENGTH_SHORT).show();
-                }}
+                        if (result != -1) {
+                            Toast.makeText(AddShoppingItem.this, "Item added to shopping list", Toast.LENGTH_SHORT).show();
+                            clearInputFields();
+                        } else {
+                            Toast.makeText(AddShoppingItem.this, "Failed to add item", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(AddShoppingItem.this, "Please enter a valid item name and quantity", Toast.LENGTH_SHORT).show();
+                    }}
                 catch (Exception e){
                     Log.d("InsertError",e.toString());
                 }
