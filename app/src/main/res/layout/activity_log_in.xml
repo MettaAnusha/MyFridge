@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center_horizontal"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".LoginActivity">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="@string/app_name"
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
 
-
-
-<!--    <ImageView-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:src="@drawable/logo"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:contentDescription="App Log Image" />-->
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/applog"
+<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
-
+        android:src="@drawable/login"
         android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:layout_marginStart="8dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="Login"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="30dp"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_edt_Username_layout"
@@ -37,8 +48,9 @@
             android:id="@+id/login_edt_Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:hint="@string/username" />
+            android:hint="@string/username"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +64,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +74,8 @@
         android:id="@+id/login_btn_Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/log_in" />
+        android:text="@string/log_in"
+        android:layout_marginTop="10dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/login_tvSignUp"
@@ -70,7 +85,6 @@
         android:layout_gravity="center"
         android:textAppearance="?android:textAppearanceMedium"
         android:layout_marginTop="16dp"/>
-
 
 
 </LinearLayout>

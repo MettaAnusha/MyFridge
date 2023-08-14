@@ -1,13 +1,17 @@
 package com.example.myfridge;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class ShoppingListActivity extends AppCompatActivity {
+public class ShoppingListActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private ShoppingListAdapter adapter;
@@ -27,5 +31,16 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         adapter.setShoppingItems(shoppingItems);
         recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Log.i("ButtonClicked" ,"ButtonUpdate");
+        if(v.getId() == R.id.btnUpdateItem)
+        {
+            Intent intent = new Intent(ShoppingListActivity.this, UpdateItemActivity.class);
+            startActivity(intent);
+        }
     }
 }
