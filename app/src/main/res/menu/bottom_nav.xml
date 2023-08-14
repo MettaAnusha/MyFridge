@@ -10,8 +10,12 @@
         android:icon="@android:drawable/ic_menu_gallery"/>
 
     <item
+        android:id="@+id/nav_about"
+        android:title="@string/about"
+        android:icon="@android:drawable/ic_menu_info_details"/>
+
+    <item
         android:id="@+id/nav_logOut"
         android:title="@string/logOut"
         android:icon="@android:drawable/ic_lock_power_off"/>
-
 </menu>

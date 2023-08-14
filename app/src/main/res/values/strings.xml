@@ -11,7 +11,9 @@
     <string name="username">Username</string>
     <string name="password">password</string>
     <string name="logOut">Log out</string>
-    <string name="login_signUpLInk">Don\'t have an account?</string>
+    <string name="about">About</string>
+
+    <string name="login_signUpLInk">Don\'t have an account? SignUp</string>
     <string name="singUp_loginLink">Have an account?</string>
 
 
@@ -34,4 +36,23 @@
 
     // add shopping item
     <string name="addItemDate">Add Item Date</string>
+
+    //About
+    <string name="Dev1_name">Abhay Gajipara</string>
+    <string name="Dev1_studentId">8859121</string>
+    <string name="Dev1_email">AbhayGajipara@gmail.com</string>
+
+    <string name="Dev2_name">RaisaBanu Mohammed</string>
+    <string name="Dev2_studentId">8866996</string>
+    <string name="Dev2_email">rmohammed6996@conestogac.on.ca</string>
+
+    <string name="Dev3_name">Anusha Metta</string>
+    <string name="Dev3_studentId">8854637</string>
+    <string name="Dev3_email">Ametta4638@conestogac.on.ca</string>
+
+    <string name="Dev4_name">Rafael Fagundes</string>
+    <string name="Dev4_studentId">xxxx</string>
+    <string name="Dev4_email">rafaeal@conestogac.on.ca</string>
+
+
 </resources>

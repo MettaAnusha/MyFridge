@@ -225,5 +225,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return itemList;
     }
 
+    public void updateShoppingItem(String originalItemName, String updatedName, int updatedQuantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, updatedName);
+        values.put(COLUMN_QUANTITY, updatedQuantity);
+
+        String whereClause = COLUMN_NAME + " = ?";
+        String[] whereArgs = {originalItemName};
+
+        db.update(TABLE_SHOPPING_LIST, values, whereClause, whereArgs);
+        db.close();
+    }
+    public ShoppingItem getShoppingItem(String itemName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_QUANTITY,
+                COLUMN_IMAGE
+        };
+
+        String selection = COLUMN_NAME + " = ?";
+        String[] selectionArgs = {itemName};
+
+        Cursor cursor = db.query(
+                TABLE_SHOPPING_LIST,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        ShoppingItem shoppingItem = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+            int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+            byte[] image = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
+
+            shoppingItem = new ShoppingItem(id, name, quantity, image);
+            cursor.close();
+        }
+
+        return shoppingItem;
+    }
+
+
 
 }
