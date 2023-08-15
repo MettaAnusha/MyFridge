@@ -4,14 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.myfridge.databinding.ActivityUpdateItemBinding;
+import com.example.myfridge.databinding.ActivityUpdateItem1Binding;
 
-public class UpdateItemActivity extends AppCompatActivity {
 
-    private ActivityUpdateItemBinding updateItemBinding;
+public class UpdateItemActivity1 extends AppCompatActivity {
+
+    private ActivityUpdateItem1Binding updateItemBinding1;
     private DatabaseHelper databaseHelper;
     private String originalItemName;
     private String previousFragmentClassName;
@@ -21,8 +23,8 @@ public class UpdateItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Initialize data binding
-        updateItemBinding = ActivityUpdateItemBinding.inflate(getLayoutInflater());
-        setContentView(updateItemBinding.getRoot());
+        updateItemBinding1 = ActivityUpdateItem1Binding.inflate(getLayoutInflater());
+        setContentView(updateItemBinding1.getRoot());
 
         // Get the original item name and previous fragment class name from the Intent
         originalItemName = getIntent().getStringExtra("originalItemName");
@@ -34,27 +36,27 @@ public class UpdateItemActivity extends AppCompatActivity {
         // Fetch the item details and populate the UI
         populateItemDetails(originalItemName);
 
-        updateItemBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {
+        updateItemBinding1.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateShoppingItem(originalItemName);
+                updateShoppingItem1(originalItemName);
             }
         });
+
     }
 
     private void populateItemDetails(String itemName) {
         if (itemName != null) {
             ShoppingItem item = databaseHelper.getShoppingItem(itemName);
             if (item != null) {
-                updateItemBinding.edtUpdatedItemName.setText(item.getName());
-                updateItemBinding.edtUpdatedQuantity.setText(String.valueOf(item.getQuantity()));
+                updateItemBinding1.edtUpdatedItemName.setText(item.getName());
+                updateItemBinding1.edtUpdatedQuantity.setText(String.valueOf(item.getQuantity()));
             }
         }
     }
-
-    private void updateShoppingItem(String originalItemName) {
-        String updatedName = updateItemBinding.edtUpdatedItemName.getText().toString();
-        String updatedQuantityString = updateItemBinding.edtUpdatedQuantity.getText().toString();
+    private void updateShoppingItem1(String originalItemName) {
+        String updatedName = updateItemBinding1.edtUpdatedItemName.getText().toString();
+        String updatedQuantityString = updateItemBinding1.edtUpdatedQuantity.getText().toString();
 
         if (updatedName.isEmpty() || updatedQuantityString.isEmpty()) {
             // Handle validation errors
@@ -69,7 +71,7 @@ public class UpdateItemActivity extends AppCompatActivity {
             if (previousFragmentClassName != null) {
                 try {
                     Class<?> previousFragmentClass = Class.forName(previousFragmentClassName);
-                    Intent intent = new Intent(UpdateItemActivity.this, previousFragmentClass);
+                    Intent intent = new Intent(UpdateItemActivity1.this, previousFragmentClass);
                     startActivity(intent);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -80,4 +82,5 @@ public class UpdateItemActivity extends AppCompatActivity {
             finish();
         }
     }
+
 }

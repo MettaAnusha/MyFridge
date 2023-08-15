@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding.buttonToolbarAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedItem = (int) homeBinding.bottomNavView.getSelectedItemId();
+                int selectedItem = homeBinding.bottomNavView.getSelectedItemId();
 
                 if(selectedItem == R.id.nav_history){
                     Intent intent = new Intent(HomeActivity.this, AddItemActivity.class);

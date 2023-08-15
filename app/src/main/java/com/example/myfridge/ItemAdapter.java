@@ -18,8 +18,8 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private List<ItemModel> itemList;
-    private Context context;
+    private final List<ItemModel> itemList;
+    private final Context context;
 
     public ItemAdapter(Context context, List<ItemModel> itemList) {
         this.context = context;
@@ -39,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ItemModel item = itemList.get(position);
         holder.textViewItemName.setText(item.getName());
         holder.textViewQuantity.setText(String.valueOf(item.getQuantity()));
-        holder.expiryDate.setText("Expired in: " + String.valueOf(item.getDaysUntilExpiry()));
+        holder.expiryDate.setText("Expired in: " + item.getDaysUntilExpiry());
 
         // Set the item image if available
         if (item.getImage() != null) {

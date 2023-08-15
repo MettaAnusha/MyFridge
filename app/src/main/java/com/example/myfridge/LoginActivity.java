@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             } catch (Exception e) {
-                Log.d("LoginActivity", "Login successful for username: " + e.toString());
+                Log.d("LoginActivity", "Login successful for username: " + e);
             }
         }
     }

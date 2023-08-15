@@ -237,6 +237,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_ITEMS, values, whereClause, whereArgs);
         db.close();
     }
+    public void updateShoppingItem1(String originalItemName, String updatedName, int updatedQuantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, updatedName);
+        values.put(COLUMN_QUANTITY, updatedQuantity);
+
+        String whereClause = COLUMN_NAME + " = ?";
+        String[] whereArgs = {originalItemName};
+
+        db.update(TABLE_SHOPPING_LIST, values, whereClause, whereArgs);
+        db.close();
+    }
     public ShoppingItem getShoppingItem(String itemName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {

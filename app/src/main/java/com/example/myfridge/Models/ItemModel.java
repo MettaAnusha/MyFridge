@@ -9,11 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ItemModel {
-    private int id;
-    private String name;
-    private int quantity;
-    private String expiryDate;
-    private byte[] image;
+    private final int id;
+    private final String name;
+    private final int quantity;
+    private final String expiryDate;
+    private final byte[] image;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     public ItemModel(int id, String name, int quantity, String addedDate, byte[] image) {

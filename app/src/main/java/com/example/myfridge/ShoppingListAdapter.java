@@ -19,8 +19,8 @@ import java.util.List;
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ViewHolder> {
 
     private List<ShoppingItem> shoppingItems;
-    private LayoutInflater inflater;
-    private Context context; // Add this context variable
+    private final LayoutInflater inflater;
+    private final Context context; // Add this context variable
 
     public ShoppingListAdapter(Context context) {
         this.context = context; // Initialize the context
@@ -53,7 +53,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             @Override
             public void onClick(View v) {
                 // Launch the UpdateActivity with item's data
-                Intent intent = new Intent(context, UpdateItemActivity.class);
+                Intent intent = new Intent(context, UpdateItemActivity1.class);
                 intent.putExtra("originalItemName", item.getName()); // Pass the original item name
                 context.startActivity(intent);
             }
