@@ -78,6 +78,7 @@ public class AddShoppingItem extends AppCompatActivity {
                         if (result != -1) {
                             Toast.makeText(AddShoppingItem.this, "Item added to shopping list", Toast.LENGTH_SHORT).show();
                             clearInputFields();
+                            finish();
                         } else {
                             Toast.makeText(AddShoppingItem.this, "Failed to add item", Toast.LENGTH_SHORT).show();
                         }

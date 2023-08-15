@@ -66,7 +66,7 @@ public class UpdateItemActivity1 extends AppCompatActivity {
         int updatedQuantity = Integer.parseInt(updatedQuantityString);
 
         if (originalItemName != null) {
-            databaseHelper.updateShoppingItem(originalItemName, updatedName, updatedQuantity);
+            databaseHelper.updateShoppingItem1(originalItemName, updatedName, updatedQuantity);
 
             if (previousFragmentClassName != null) {
                 try {

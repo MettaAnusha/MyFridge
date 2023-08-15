@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private final List<ItemModel> itemList;
+    private  List<ItemModel> itemList;
     private final Context context;
 
     public ItemAdapter(Context context, List<ItemModel> itemList) {
@@ -33,6 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 .inflate(R.layout.item_layout, parent, false);
         return new ItemViewHolder(itemView);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
@@ -56,6 +57,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 Intent intent = new Intent(context, UpdateItemActivity.class);
                 intent.putExtra("originalItemName", item.getName()); // Pass the original item name
                 context.startActivity(intent);
+
             }
         });
 
@@ -73,7 +75,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
 
     }
-
+    public void setItemList(List<ItemModel> itemList) {
+        this.itemList = itemList;
+    }
     @Override
     public int getItemCount() {
         return itemList.size();

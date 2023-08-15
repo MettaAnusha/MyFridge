@@ -62,7 +62,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             @Override
             public void onClick(View v) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(context);
-                databaseHelper.deleteItem(item.getName());
+                databaseHelper.deleteShoppingItem(item.getName());
 
                 int removedPosition = holder.getAdapterPosition();
                 shoppingItems.remove(removedPosition);

@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void setDefaultFragment() {
         Fragment defaultFragment = new ItemListFragment(); // Change to the appropriate fragment class
-
+        setVisibilityToVisible();
         FragmentTransaction fragTrans = getSupportFragmentManager().beginTransaction();
         fragTrans.replace(R.id.frame, defaultFragment);
         fragTrans.commit();
@@ -75,11 +75,14 @@ public class HomeActivity extends AppCompatActivity {
     public void navigation(MenuItem item){
         Fragment frag = null;
         if (item.getItemId() == R.id.nav_shopping) {
+            setVisibilityToVisible();
             frag = new ShoppingItemListFragment();
 
         } else if (item.getItemId() == R.id.nav_history) {
+            setVisibilityToVisible();
             frag = new ItemListFragment();
         } else if(item.getItemId() == R.id.nav_about) {
+            setVisibilityGone();
             frag = new AboutFragment();
         }
         else{
@@ -97,6 +100,13 @@ public class HomeActivity extends AppCompatActivity {
             fragTrans.replace(R.id.frame, frag);
             fragTrans.commit();
         }
+    }
+
+    void setVisibilityToVisible(){
+        homeBinding.buttonToolbarAction.setVisibility(View.VISIBLE);
+    }
+    void setVisibilityGone(){
+        homeBinding.buttonToolbarAction.setVisibility(View.GONE);
     }
 
 }

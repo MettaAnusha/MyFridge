@@ -85,13 +85,15 @@ public class AddItemActivity extends AppCompatActivity {
                        if (result != -1) {
                            Toast.makeText(AddItemActivity.this, "Item added to Pantry", Toast.LENGTH_SHORT).show();
                            clearInputFields();
+                           finish();
                        } else {
                            Toast.makeText(AddItemActivity.this, "Failed to add item", Toast.LENGTH_SHORT).show();
                        }
                    }
                  else {
                     Toast.makeText(AddItemActivity.this, "Please enter a valid item name and quantity", Toast.LENGTH_SHORT).show();
-                }}
+
+                 }}
                 catch (Exception e){
                     Log.d("InsertError",e.toString());
                 }

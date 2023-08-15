@@ -41,4 +41,17 @@ public class ShoppingItemListFragment extends Fragment {
         adapter.setShoppingItems(shoppingItems);
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        List<ShoppingItem> shoppingItems = databaseHelper.getShoppingListItems();
+
+        // Update the adapter's data and notify it of the changes
+        if (shoppingItems != null) {
+            adapter.setShoppingItems(shoppingItems);
+            adapter.notifyDataSetChanged();
+        }
+    }
 }
