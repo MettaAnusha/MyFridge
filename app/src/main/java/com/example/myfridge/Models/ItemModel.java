@@ -40,9 +40,9 @@ public class ItemModel {
     public String getAddedDate() {
         return expiryDate;
     }
-    public int getDaysUntilExpiry() {
 
-            Date today = new Date();
+    public int getDaysUntilExpiry() {
+        Date today = new Date();
         Date expiry = null;
         try {
             expiry = DATE_FORMAT.parse(expiryDate);
@@ -50,8 +50,9 @@ public class ItemModel {
             throw new RuntimeException(e);
         }
         long difference = expiry.getTime() - today.getTime();
-            return (int) (difference / (1000 * 60 * 60 * 24));
 
+        int days = (int) (difference / (1000 * 60 * 60 * 24));
+        return days;
     }
 
     public byte[] getImage() {

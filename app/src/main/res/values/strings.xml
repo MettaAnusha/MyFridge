@@ -56,6 +56,12 @@
     <string name="login">Login</string>
     <string name="sign_up_image">Sign Up Image</string>
     <string name="login_image">Login Image</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="quantity_d">Quantity: %d</string>
+    <string name="expires_d_days">Expires in: %d days</string>
+    <string name="expired">Expired</string>
 
 
 </resources>

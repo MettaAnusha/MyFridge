@@ -7,5 +7,8 @@
     <color name="text_secondary_color">#555555</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="dark_color">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#419F8C</color>
+    <color name="cancel">#D7263D</color>
+    <color name="confirm">#419F8C</color>
+    <color name="buttonSecondary">#AF979F</color>
 </resources>
