@@ -26,29 +26,5 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="15dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:cardElevation="10dp"
-                app:cardCornerRadius="20dp"
-                android:layout_marginTop="5dp">
-
-                <include layout="@layout/about_layout_content" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-    </ScrollView>
+    <include layout="@layout/about_layout_content" />
 </LinearLayout>
