@@ -39,4 +39,17 @@ public class ItemListFragment extends Fragment {
 
         return rootView;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        List<ItemModel> itemList = databaseHelper.getAllItems();
+
+        // Update the adapter's data and notify it of the changes
+        if (itemAdapter != null) {
+            itemAdapter.setItemList(itemList);
+            itemAdapter.notifyDataSetChanged();
+        }
+    }
+
 }

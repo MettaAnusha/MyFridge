@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.myfridge.Models.ItemModel;
 import com.example.myfridge.databinding.ActivityUpdateItemBinding;
 
 public class UpdateItemActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class UpdateItemActivity extends AppCompatActivity {
 
     private void populateItemDetails(String itemName) {
         if (itemName != null) {
-            ShoppingItem item = databaseHelper.getShoppingItem(itemName);
+            ItemModel item = databaseHelper.getItem(itemName);
             if (item != null) {
                 updateItemBinding.edtUpdatedItemName.setText(item.getName());
                 updateItemBinding.edtUpdatedQuantity.setText(String.valueOf(item.getQuantity()));

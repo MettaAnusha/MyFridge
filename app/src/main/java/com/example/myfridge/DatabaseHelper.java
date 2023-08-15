@@ -285,12 +285,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return shoppingItem;
     }
+
+    public ItemModel getItem(String itemName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_QUANTITY,
+                COLUMN_IMAGE,
+                COLUMN_EXPIRY_DATE
+        };
+
+        String selection = COLUMN_NAME + " = ?";
+        String[] selectionArgs = {itemName};
+
+        Cursor cursor = db.query(
+                TABLE_ITEMS,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        ItemModel shoppingItem = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+            int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+            byte[] image = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
+            String expiryDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EXPIRY_DATE));
+
+            shoppingItem = new ItemModel(id, name, quantity,expiryDate, image);
+            cursor.close();
+        }
+
+        return shoppingItem;
+    }
     public void deleteItem(String itemName) {
         SQLiteDatabase db = this.getWritableDatabase();
         String whereClause = COLUMN_NAME + " = ?";
         String[] whereArgs = {itemName};
 
         db.delete(TABLE_ITEMS, whereClause, whereArgs);
+        db.close();
+    }
+    public void deleteShoppingItem(String itemName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = COLUMN_NAME + " = ?";
+        String[] whereArgs = {itemName};
+
+        db.delete(TABLE_SHOPPING_LIST, whereClause, whereArgs);
         db.close();
     }
 
