@@ -9,7 +9,9 @@
         android:id="@+id/tilUpdatedItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Updated Item Name">
+        android:hint="@string/updated_item_name"
+        android:layout_marginBottom="15dp"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtUpdatedItemName"
@@ -22,21 +24,37 @@
         android:id="@+id/tilUpdatedQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Updated Quantity">
+        android:hint="@string/updated_quantity">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtUpdatedQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnUpdate"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Item"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_item"
+            android:layout_marginEnd="15dp"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:backgroundTint="@color/cancel"
+            />
+    </LinearLayout>
 
 </LinearLayout>

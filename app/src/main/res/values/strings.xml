@@ -62,6 +62,9 @@
     <string name="quantity_d">Quantity: %d</string>
     <string name="expires_d_days">Expires in: %d days</string>
     <string name="expired">Expired</string>
+    <string name="update_item">Update Item</string>
+    <string name="updated_quantity">Updated Quantity</string>
+    <string name="updated_item_name">Updated Item Name</string>
 
 
 </resources>

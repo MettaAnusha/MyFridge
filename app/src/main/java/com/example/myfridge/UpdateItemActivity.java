@@ -41,6 +41,15 @@ public class UpdateItemActivity extends AppCompatActivity {
                 updateShoppingItem(originalItemName);
             }
         });
+
+        updateItemBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UpdateItemActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void populateItemDetails(String itemName) {
