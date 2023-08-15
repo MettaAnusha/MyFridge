@@ -234,7 +234,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String whereClause = COLUMN_NAME + " = ?";
         String[] whereArgs = {originalItemName};
 
-        db.update(TABLE_SHOPPING_LIST, values, whereClause, whereArgs);
+        db.update(TABLE_ITEMS, values, whereClause, whereArgs);
         db.close();
     }
     public ShoppingItem getShoppingItem(String itemName) {
@@ -273,6 +273,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return shoppingItem;
     }
+    public void deleteItem(String itemName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = COLUMN_NAME + " = ?";
+        String[] whereArgs = {itemName};
+
+        db.delete(TABLE_ITEMS, whereClause, whereArgs);
+        db.close();
+    }
+
 
 
 

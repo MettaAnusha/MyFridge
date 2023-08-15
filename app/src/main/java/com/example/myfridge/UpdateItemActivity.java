@@ -1,7 +1,9 @@
 package com.example.myfridge;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,22 +11,25 @@ import com.example.myfridge.databinding.ActivityUpdateItemBinding;
 
 public class UpdateItemActivity extends AppCompatActivity {
 
-    ActivityUpdateItemBinding updateItemBinding;
-    private DatabaseHelper dbh;
+    private ActivityUpdateItemBinding updateItemBinding;
+    private DatabaseHelper databaseHelper;
     private String originalItemName;
+    private String previousFragmentClassName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_update_item);
 
-        View view = updateItemBinding.getRoot();
-        setContentView(view);
+        // Initialize data binding
+        updateItemBinding = ActivityUpdateItemBinding.inflate(getLayoutInflater());
+        setContentView(updateItemBinding.getRoot());
 
-        dbh = new DatabaseHelper(this);
-
-        // Get the original item name from the Intent
+        // Get the original item name and previous fragment class name from the Intent
         originalItemName = getIntent().getStringExtra("originalItemName");
+        previousFragmentClassName = getIntent().getStringExtra("previousFragment");
+
+        // Initialize the DatabaseHelper instance
+        databaseHelper = new DatabaseHelper(this);
 
         // Fetch the item details and populate the UI
         populateItemDetails(originalItemName);
@@ -32,13 +37,14 @@ public class UpdateItemActivity extends AppCompatActivity {
         updateItemBinding.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateItem(originalItemName);
+                updateShoppingItem(originalItemName);
             }
         });
     }
+
     private void populateItemDetails(String itemName) {
         if (itemName != null) {
-            ShoppingItem item = dbh.getShoppingItem(itemName);
+            ShoppingItem item = databaseHelper.getShoppingItem(itemName);
             if (item != null) {
                 updateItemBinding.edtUpdatedItemName.setText(item.getName());
                 updateItemBinding.edtUpdatedQuantity.setText(String.valueOf(item.getQuantity()));
@@ -46,24 +52,30 @@ public class UpdateItemActivity extends AppCompatActivity {
         }
     }
 
-    private void updateItem(String originalItemName) {
-        String updatedName = updateItemBinding.edtUpdatedItemName.getText().toString().trim();
-        String updatedQuantityStr = updateItemBinding.edtUpdatedQuantity.getText().toString().trim();
+    private void updateShoppingItem(String originalItemName) {
+        String updatedName = updateItemBinding.edtUpdatedItemName.getText().toString();
+        String updatedQuantityString = updateItemBinding.edtUpdatedQuantity.getText().toString();
 
-        if (updatedName.isEmpty() || updatedQuantityStr.isEmpty()) {
-            updateItemBinding.tilUpdatedItemName.setError("Name and quantity are required");
+        if (updatedName.isEmpty() || updatedQuantityString.isEmpty()) {
+            // Handle validation errors
             return;
         }
 
-        int updatedQuantity = Integer.parseInt(updatedQuantityStr);
-
-        if (updatedQuantity <= 0) {
-            updateItemBinding.tilUpdatedQuantity.setError("Quantity must be greater than 0");
-            return;
-        }
+        int updatedQuantity = Integer.parseInt(updatedQuantityString);
 
         if (originalItemName != null) {
-            dbh.updateShoppingItem(originalItemName, updatedName, updatedQuantity);
+            databaseHelper.updateShoppingItem(originalItemName, updatedName, updatedQuantity);
+
+            if (previousFragmentClassName != null) {
+                try {
+                    Class<?> previousFragmentClass = Class.forName(previousFragmentClassName);
+                    Intent intent = new Intent(UpdateItemActivity.this, previousFragmentClass);
+                    startActivity(intent);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+
             setResult(RESULT_OK);
             finish();
         }

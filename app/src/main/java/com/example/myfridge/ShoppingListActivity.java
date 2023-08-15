@@ -33,6 +33,16 @@ public class ShoppingListActivity extends AppCompatActivity implements View.OnCl
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Reload the activity
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
 
     @Override
     public void onClick(View v) {
