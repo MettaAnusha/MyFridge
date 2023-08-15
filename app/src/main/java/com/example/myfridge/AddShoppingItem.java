@@ -19,6 +19,7 @@ import com.example.myfridge.databinding.ActivityAddShoppingItemBinding;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddShoppingItem extends AppCompatActivity {
 
@@ -69,6 +70,8 @@ public class AddShoppingItem extends AppCompatActivity {
                 try{
                     if (!itemName.isEmpty() && !quantity.isEmpty()) {
                         int quantityValue = Integer.parseInt(quantity);
+                        Date today = new Date();
+
                         String dateStr = binding.edtDateEditText.getText().toString().trim();
                         long result = databaseHelper.insertShoppingData(DatabaseHelper.TABLE_SHOPPING_LIST, itemName, quantityValue, itemImage,dateStr);
 

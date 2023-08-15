@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             } catch (Exception e) {
-                Log.d("LoginActivity", "Login successful for username: " + e.toString());
+                Log.d("LoginActivity", "Login successful for username: " + e);
             }
         }
     }
@@ -119,6 +119,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
-        editor.apply();
+        editor.commit();
     }
 }

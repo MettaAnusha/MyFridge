@@ -32,8 +32,10 @@ public class ItemListFragment extends Fragment {
         databaseHelper = new DatabaseHelper(getContext());
         List<ItemModel> itemList = databaseHelper.getAllItems();
 
-        itemAdapter = new ItemAdapter(getContext(), itemList);
-        recyclerViewItems.setAdapter(itemAdapter);
+        if (itemList != null && !itemList.isEmpty()) {
+            itemAdapter = new ItemAdapter(getContext(), itemList);
+            recyclerViewItems.setAdapter(itemAdapter);
+        }
 
         return rootView;
     }

@@ -3,7 +3,13 @@
     <style name="Base.Theme.MyFridge" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+        <item name="colorPrimary">@color/dark_color</item>
+        <item name="android:colorBackground">@color/white</item>
 
+    </style>
     <style name="Theme.MyFridge" parent="Base.Theme.MyFridge" />
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

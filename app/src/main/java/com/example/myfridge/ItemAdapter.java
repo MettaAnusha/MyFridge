@@ -1,25 +1,25 @@
 package com.example.myfridge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfridge.BitmapUtils;
 import com.example.myfridge.Models.ItemModel;
-import com.example.myfridge.R;
 
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private List<ItemModel> itemList;
-    private Context context;
+    private final List<ItemModel> itemList;
+    private final Context context;
 
     public ItemAdapter(Context context, List<ItemModel> itemList) {
         this.context = context;
@@ -39,15 +39,39 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ItemModel item = itemList.get(position);
         holder.textViewItemName.setText(item.getName());
         holder.textViewQuantity.setText(String.valueOf(item.getQuantity()));
-        holder.expiryDate.setText("Expired in: "+String.valueOf(item.getDaysUntilExpiry()));
+        holder.expiryDate.setText("Expired in: " + item.getDaysUntilExpiry());
 
         // Set the item image if available
         if (item.getImage() != null) {
-
             holder.imageViewItem.setImageBitmap(BitmapUtils.getImage(item.getImage()));
         } else {
             holder.imageViewItem.setImageResource(R.drawable.images); // Set a placeholder image
         }
+
+        // Set click listeners for update and delete buttons
+        holder.buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Launch the UpdateActivity with item's data
+                Intent intent = new Intent(context, UpdateItemActivity.class);
+                intent.putExtra("originalItemName", item.getName()); // Pass the original item name
+                context.startActivity(intent);
+            }
+        });
+
+        holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseHelper databaseHelper = new DatabaseHelper(context);
+                databaseHelper.deleteItem(item.getName());
+
+                int removedPosition = holder.getAdapterPosition();
+                itemList.remove(removedPosition);
+                notifyItemRemoved(removedPosition);
+            }
+        });
+
+
     }
 
     @Override
@@ -60,6 +84,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         public TextView textViewQuantity;
         public ImageView imageViewItem;
         public TextView expiryDate;
+        public Button buttonUpdate;
+        public Button buttonDelete;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +93,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             textViewQuantity = itemView.findViewById(R.id.textViewQuantity);
             imageViewItem = itemView.findViewById(R.id.imageViewItem);
             expiryDate = itemView.findViewById(R.id.textViewExpiry);
+            buttonUpdate = itemView.findViewById(R.id.buttonUpdate);
+            buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }
     }
 }

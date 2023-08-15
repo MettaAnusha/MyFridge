@@ -1,10 +1,10 @@
 package com.example.myfridge;
 
 public class ShoppingItem {
-    private int id;
-    private String name;
-    private int quantity;
-    private byte[] image;
+    private final int id;
+    private final String name;
+    private final int quantity;
+    private final byte[] image;
 
     public ShoppingItem(int id, String name, int quantity, byte[] image) {
         this.id = id;

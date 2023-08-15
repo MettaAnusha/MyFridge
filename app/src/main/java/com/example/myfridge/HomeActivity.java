@@ -30,21 +30,19 @@ public class HomeActivity extends AppCompatActivity {
         homeBinding.buttonToolbarAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedItem = (int) homeBinding.bottomNavView.getSelectedItemId();
+                int selectedItem = homeBinding.bottomNavView.getSelectedItemId();
 
                 if(selectedItem == R.id.nav_history){
                     Intent intent = new Intent(HomeActivity.this, AddItemActivity.class);
                     startActivity(intent);
                 }
-               else if(selectedItem == R.id.nav_shopping){
+                else if(selectedItem == R.id.nav_shopping){
                     Intent intent = new Intent(HomeActivity.this, AddShoppingItem.class);
                     startActivity(intent);
                 }
-               else{
-
+                else{
 
                 }
-
             }
         });
     }
@@ -57,9 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void SetBottomNavigation()
     {
-
-
-            homeBinding.bottomNavView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+        homeBinding.bottomNavView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item)
             {
@@ -83,7 +79,10 @@ public class HomeActivity extends AppCompatActivity {
 
         } else if (item.getItemId() == R.id.nav_history) {
             frag = new ItemListFragment();
-        } else{
+        } else if(item.getItemId() == R.id.nav_about) {
+            frag = new AboutFragment();
+        }
+        else{
             SharedPreferences sharedPreferences = getSharedPreferences(KeywordsUtils.SP_userSession, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove(KeywordsUtils.SP_userName);
@@ -99,7 +98,5 @@ public class HomeActivity extends AppCompatActivity {
             fragTrans.commit();
         }
     }
-
-
 
 }
