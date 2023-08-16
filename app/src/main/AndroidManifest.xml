@@ -27,9 +27,6 @@
             android:name=".UpdateItemActivity"
             android:exported="false" />
         <activity
-            android:name=".AddShoppingItem"
-            android:exported="false" />
-        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
@@ -43,9 +40,6 @@
             android:exported="false" />
         <activity
             android:name=".ShoppingListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UpdateItemActivity1"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

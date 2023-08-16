@@ -36,13 +36,6 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, AddItemActivity.class);
                     startActivity(intent);
                 }
-                else if(selectedItem == R.id.nav_shopping){
-                    Intent intent = new Intent(HomeActivity.this, AddShoppingItem.class);
-                    startActivity(intent);
-                }
-                else{
-
-                }
             }
         });
     }
@@ -74,15 +67,16 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void navigation(MenuItem item){
         Fragment frag = null;
-        // Shopping List
-        if (item.getItemId() == R.id.nav_shopping) {
-            setVisibilityToVisible();
-            frag = new ShoppingItemListFragment();
-        }
+
         // My Fridge
-        else if (item.getItemId() == R.id.nav_history) {
+        if (item.getItemId() == R.id.nav_history) {
             setVisibilityToVisible();
             frag = new ItemListFragment();
+        }
+        // Shopping List
+        else if (item.getItemId() == R.id.nav_shopping) {
+            setVisibilityGone();
+            frag = new ShoppingItemListFragment();
         }
         // About The Devs
         else if(item.getItemId() == R.id.nav_about) {

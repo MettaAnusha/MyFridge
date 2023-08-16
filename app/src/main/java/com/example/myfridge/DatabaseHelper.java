@@ -140,7 +140,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert image data
         return db.insert(tableName, null, values);
     }
-    public long insertShoppingData(String tableName, String name, int quantity, byte[] image,String date) {
+    public long insertShoppingItem(String name, int quantity, byte[] image, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);
@@ -149,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ADDED_DATE, date);
         values.put(COLUMN_COMPLETED, 0);
         // Insert image data
-        return db.insert(tableName, null, values);
+        return db.insert(TABLE_SHOPPING_LIST, null, values);
     }
     public List<ShoppingItem> getShoppingListItems() {
         List<ShoppingItem> items = new ArrayList<>();
@@ -235,18 +235,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] whereArgs = {originalItemName};
 
         db.update(TABLE_ITEMS, values, whereClause, whereArgs);
-        db.close();
-    }
-    public void updateShoppingItem1(String originalItemName, String updatedName, int updatedQuantity) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, updatedName);
-        values.put(COLUMN_QUANTITY, updatedQuantity);
-
-        String whereClause = COLUMN_NAME + " = ?";
-        String[] whereArgs = {originalItemName};
-
-        db.update(TABLE_SHOPPING_LIST, values, whereClause, whereArgs);
         db.close();
     }
     public ShoppingItem getShoppingItem(String itemName) {
@@ -340,8 +328,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_SHOPPING_LIST, whereClause, whereArgs);
         db.close();
     }
-
-
-
-
 }
