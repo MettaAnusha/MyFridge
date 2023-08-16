@@ -43,21 +43,11 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ShoppingItem item = shoppingItems.get(position);
         holder.itemNameTextView.setText(item.getName());
-        holder.quantityTextView.setText(String.valueOf(item.getQuantity()));
         if (item.getImage() != null) {
             holder.itemImageView.setImageBitmap(BitmapUtils.getImage(item.getImage()));
         } else {
             holder.itemImageView.setImageResource(R.drawable.images);
         }
-        holder.buttonUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Launch the UpdateActivity with item's data
-                Intent intent = new Intent(context, UpdateItemActivity1.class);
-                intent.putExtra("originalItemName", item.getName()); // Pass the original item name
-                context.startActivity(intent);
-            }
-        });
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,17 +68,13 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView itemNameTextView;
-        TextView quantityTextView;
         ImageView itemImageView;
-        public Button buttonUpdate;
         public Button buttonDelete;
 
         ViewHolder(View itemView) {
             super(itemView);
             itemNameTextView = itemView.findViewById(R.id.textViewItemName);
-            quantityTextView = itemView.findViewById(R.id.textViewQuantity);
             itemImageView = itemView.findViewById(R.id.imageViewItem);
-            buttonUpdate = itemView.findViewById(R.id.buttonUpdate);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }
     }

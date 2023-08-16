@@ -70,12 +70,22 @@
                 android:layout_marginTop="5dp"
                 >
 
+
+                <Button
+                    android:id="@+id/buttonAddToShoppingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/add"
+                    app:icon="@drawable/shopping_cart_white" />
+
                 <Button
                     android:id="@+id/buttonUpdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:text="@string/update"
+                    android:backgroundTint="@color/buttonSecondary"
                     app:icon="@drawable/edit" />
 
                 <Button

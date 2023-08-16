@@ -36,13 +36,6 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, AddItemActivity.class);
                     startActivity(intent);
                 }
-                else if(selectedItem == R.id.nav_shopping){
-                    Intent intent = new Intent(HomeActivity.this, AddShoppingItem.class);
-                    startActivity(intent);
-                }
-                else{
-
-                }
             }
         });
     }
@@ -74,24 +67,25 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void navigation(MenuItem item){
         Fragment frag = null;
-        if (item.getItemId() == R.id.nav_shopping) {
-            setVisibilityToVisible();
-            frag = new ShoppingItemListFragment();
-        } else if (item.getItemId() == R.id.nav_history) {
+
+        // My Fridge
+        if (item.getItemId() == R.id.nav_history) {
             setVisibilityToVisible();
             frag = new ItemListFragment();
-        } else if(item.getItemId() == R.id.nav_about) {
+        }
+        // Shopping List
+        else if (item.getItemId() == R.id.nav_shopping) {
+            setVisibilityGone();
+            frag = new ShoppingItemListFragment();
+        }
+        // About The Devs
+        else if(item.getItemId() == R.id.nav_about) {
             setVisibilityGone();
             frag = new AboutFragment();
         }
+        // User
         else{
-            SharedPreferences sharedPreferences = getSharedPreferences(KeywordsUtils.SP_userSession, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove(KeywordsUtils.SP_userName);
-            editor.apply();
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            frag = new UserFragment();
         }
 
         if (frag != null) {
