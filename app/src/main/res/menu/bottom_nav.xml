@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_history"
-        android:title="@string/history"
-        android:icon="@android:drawable/ic_menu_recent_history"/>
+        android:title="@string/my_fridge"
+        android:icon="@drawable/fridge"/>
     <item
         android:id="@+id/nav_shopping"
         android:title="@string/shoppingList"
-        android:icon="@android:drawable/ic_menu_gallery"/>
+        android:icon="@drawable/shopping_cart"/>
 
     <item
         android:id="@+id/nav_about"
         android:title="@string/about"
-        android:icon="@android:drawable/ic_menu_info_details"/>
+        android:icon="@drawable/about"/>
 
     <item
         android:id="@+id/nav_logOut"
-        android:title="@string/logOut"
-        android:icon="@android:drawable/ic_lock_power_off"/>
+        android:title="@string/profile"
+        android:icon="@drawable/user"/>
 </menu>

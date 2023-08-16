@@ -65,6 +65,10 @@
     <string name="update_item">Update Item</string>
     <string name="updated_quantity">Updated Quantity</string>
     <string name="updated_item_name">Updated Item Name</string>
+    <string name="my_fridge">My Fridge</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log Out</string>
+    <string name="about_the_developers">About The Developers</string>
 
 
 </resources>
