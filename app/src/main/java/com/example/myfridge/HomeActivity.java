@@ -77,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_shopping) {
             setVisibilityToVisible();
             frag = new ShoppingItemListFragment();
-
         } else if (item.getItemId() == R.id.nav_history) {
             setVisibilityToVisible();
             frag = new ItemListFragment();
