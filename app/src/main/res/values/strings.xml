@@ -9,7 +9,7 @@
     <string name="sign_Up">Sign Up</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
-    <string name="password">password</string>
+    <string name="password">Password</string>
     <string name="logOut">Log out</string>
     <string name="about">About</string>
 
@@ -50,9 +50,27 @@
     <string name="Dev3_studentId">8854637</string>
     <string name="Dev3_email">Ametta4638@conestogac.on.ca</string>
 
-    <string name="Dev4_name">Rafael Fagundes</string>
-    <string name="Dev4_studentId">xxxx</string>
-    <string name="Dev4_email">rafaeal@conestogac.on.ca</string>
+    <string name="Dev4_name">Rafael de Castro Fagundes Lima</string>
+    <string name="Dev4_studentId">8861657</string>
+    <string name="Dev4_email">rdecastrofagund1657@conestogac.on.ca</string>
+    <string name="login">Login</string>
+    <string name="sign_up_image">Sign Up Image</string>
+    <string name="login_image">Login Image</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="quantity_d">Quantity: %d</string>
+    <string name="expires_d_days">Expires in: %d days</string>
+    <string name="expired">Expired</string>
+    <string name="update_item">Update Item</string>
+    <string name="updated_quantity">Updated Quantity</string>
+    <string name="updated_item_name">Updated Item Name</string>
+    <string name="my_fridge">My Fridge</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log Out</string>
+    <string name="about_the_developers">About The Developers</string>
+    <string name="add">Add</string>
+    <string name="add_item_button">Add Item Button</string>
 
 
 </resources>

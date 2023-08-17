@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private  List<ItemModel> itemList;
+    private List<ItemModel> itemList;
     private final Context context;
 
     public ItemAdapter(Context context, List<ItemModel> itemList) {
@@ -39,8 +39,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         ItemModel item = itemList.get(position);
         holder.textViewItemName.setText(item.getName());
-        holder.textViewQuantity.setText(String.valueOf(item.getQuantity()));
-        holder.expiryDate.setText("Expired in: " + item.getDaysUntilExpiry());
+        holder.textViewQuantity.setText(context.getString(R.string.quantity_d, item.getQuantity()));
+        if (item.getDaysUntilExpiry() > 0) {
+            holder.expiryDate.setText(context.getString(R.string.expires_d_days, item.getDaysUntilExpiry()));
+        } else {
+            holder.expiryDate.setText(R.string.expired);
+        }
 
         // Set the item image if available
         if (item.getImage() != null) {
@@ -64,20 +68,36 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseHelper databaseHelper = new DatabaseHelper(context);
-                databaseHelper.deleteItem(item.getName());
+                try {
+                    DatabaseHelper databaseHelper = new DatabaseHelper(context);
+                    databaseHelper.deleteItem(item.getName());
 
-                int removedPosition = holder.getAdapterPosition();
-                itemList.remove(removedPosition);
-                notifyItemRemoved(removedPosition);
+                    int removedPosition = holder.getAdapterPosition();
+                    itemList.remove(removedPosition);
+                    notifyItemRemoved(removedPosition);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-
+        holder.buttonAddToShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    DatabaseHelper databaseHelper = new DatabaseHelper(context);
+                    databaseHelper.insertShoppingItem(item.getName(), item.getQuantity(), item.getImage(), item.getAddedDate());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+
     public void setItemList(List<ItemModel> itemList) {
         this.itemList = itemList;
     }
+
     @Override
     public int getItemCount() {
         return itemList.size();
@@ -90,6 +110,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         public TextView expiryDate;
         public Button buttonUpdate;
         public Button buttonDelete;
+        public Button buttonAddToShoppingList;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +120,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             expiryDate = itemView.findViewById(R.id.textViewExpiry);
             buttonUpdate = itemView.findViewById(R.id.buttonUpdate);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
+            buttonAddToShoppingList = itemView.findViewById(R.id.buttonAddToShoppingList);
         }
     }
 }

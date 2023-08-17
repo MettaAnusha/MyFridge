@@ -2,9 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-feature android:name="android.hardware.camera" />
-
+    <!-- Permissions and features -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Allow hardware camera access -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -16,14 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFridge"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".UpdateItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddShoppingItem"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
@@ -41,16 +42,8 @@
             android:name=".ShoppingListActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateItemActivity1"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"/>
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
